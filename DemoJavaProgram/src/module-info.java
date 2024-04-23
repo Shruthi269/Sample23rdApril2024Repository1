@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Puppy
+ *
+ */
+module JavaSamplePgms {
+}
