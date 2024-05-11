@@ -5,9 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CreateUser {
+public class CreateUser
+{
 	private static WebDriver oBrowser = null;
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		launchBrowser();
 		navigate();
 		login();
@@ -16,23 +18,23 @@ public class CreateUser {
 		deleteUser();
 		logout();
 		closeApp();
-
 	}
 	private static void launchBrowser() 
 	{
-		try
+		try 
 		{
 			oBrowser = new ChromeDriver();
-			oBrowser.manage().window().maximize();			
-		} catch (Exception e)
+			oBrowser.manage().window().maximize();
+			Thread.sleep(2000);
+		} catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void navigate()
 	{
-		try
+		try 
 		{
 			oBrowser.get("http://localhost:81/user/submit_tt.do");
 			Thread.sleep(2000);
@@ -41,30 +43,33 @@ public class CreateUser {
 			e.printStackTrace();
 		}
 	}
+
 	private static void login()
-	{
-		try
-		{
-			oBrowser.findElement(By.name("username")).sendKeys("admin");
-			oBrowser.findElement(By.name("pwd")).sendKeys("manager");
-			oBrowser.findElement(By.xpath("//div[text()='Login ']")).click();
-			Thread.sleep(2000);			
-		} catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-	}
-		
-	private static void minimizeFlyOutWindow()
 	{
 		try 
 		{
-			oBrowser.findElement(By.id("gettingStartedShortcutsPanelId")).click();
+			oBrowser.findElement(By.id("username")).sendKeys("admin");
+			oBrowser.findElement(By.name("pwd")).sendKeys("manager");
+			oBrowser.findElement(By.xpath("//*[@id='loginButton']/div")).click();
 			Thread.sleep(2000);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
+
+	}
+
+	private static void minimizeFlyOutWindow() 
+	{
+		try 
+		{
+			oBrowser.findElement(By.id("gettingStartedShortcutsPanelId")).click();
+			Thread.sleep(2000);
+		} catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+
 	}
 	private static void createUser() 
 	{
@@ -72,7 +77,7 @@ public class CreateUser {
 		{
 			oBrowser.findElement(By.xpath("//div[text()='USERS']")).click();
 			oBrowser.findElement(By.xpath("//div[text()='Add User']")).click();
-			Thread.sleep(2000);
+			
 			oBrowser.findElement(By.name("firstName")).sendKeys("User1");
 			oBrowser.findElement(By.name("lastName")).sendKeys("demo");
 			oBrowser.findElement(By.name("email")).sendKeys("user1.demo@gmail.com");
@@ -81,13 +86,12 @@ public class CreateUser {
 			oBrowser.findElement(By.name("passwordCopy")).sendKeys("welcome1");
 			Thread.sleep(2000);
 			oBrowser.findElement(By.xpath("//span[text()='Create User']")).click();
-			Thread.sleep(3000);
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-	}
 
+	}
 	private static void deleteUser() 
 	{
 		try
@@ -109,17 +113,19 @@ public class CreateUser {
 	}
 	private static void logout()
 	{
-		try 
+		try
 		{
 			oBrowser.findElement(By.linkText("Logout")).click();
-		} catch (Exception e)
+		} catch (Exception e) 
 		{
-		e.printStackTrace();
+			e.printStackTrace();
 		}
+
 	}
-	private static void closeApp()
+
+	private static void closeApp() 
 	{
-		try 
+		try
 		{
 			oBrowser.quit();
 		} catch (Exception e)
@@ -127,5 +133,4 @@ public class CreateUser {
 			e.printStackTrace();
 		}
 	}
-	
 }
